@@ -90,30 +90,52 @@ def doAction(action):
     if actionType = actionTypes[0]:
         # keyboard_press
 
+        pyautogui.press(actionData)
     else if actionType = actionTypes[1]:
         # keyboard_key_down
 
+        pyautogui.keyDown(actionData)
     else if actionType = actionTypes[2]:
         # keyboard_key_up
 
+        pyautogui.keyUp(actionData)
     else if actionType = actionTypes[3]:
         # mouse_click
 
+        if actionData = "right":
+            pyautogui.click(button='right')
+        else:
+            pyautogui.click()
     else if actionType = actionTypes[4]:
         # mouse_button_down
 
+        if actionData = "right":
+            pyautogui.mouseDown(button='right')
+        else:
+            pyautogui.mouseDown()
     else if actionType = actionTypes[5]:
         # mouse_button_up
 
+        if actionData = "right":
+            pyautogui.mouseUp(button='right')
+        else:
+            pyautogui.mouseUp()
     else if actionType = actionTypes[6]:
         # mouse_move_horizontal
 
+        position = pyautogui.position()
+        x = position(0) + actionData
+        pyautogui.moveTo(x, position(1))
     else if actionType = actionTypes[7]:
         # mouse_move_vertical
 
+        position = pyautogui.position()
+        y = position(1) + actionData
+        pyautogui.moveTo(position(0), y)
     else if actionType = actionTypes[8]:
         # scroll
 
+        scroll(actionData)
     else if actionType = actionTypes[9]:
         # wait
         time.sleep(actionData)
@@ -150,10 +172,6 @@ def run():
 
                 for action in rule["actions"]:
                     doAction(action)
-
-            
-            # if found:
-            #     
 
 
 run()
