@@ -1,0 +1,30 @@
+{
+    "rules": [
+        {
+            "textToLookFor": "Splawik pluska",
+            "actions": [
+                {
+                    "type": "click",
+                    "data": "right"
+                },
+                {
+                    "type": "wait",
+                    "data": 3
+                },
+                {
+                    "type": "click",
+                    "data": "right"
+                }
+            ]
+        },
+        {
+            "textToLookFor": "Przedmiot zniszczony",
+            "actions": [
+                {
+                    "type": "scroll",
+                    "data": -1
+                }
+            ]
+        }
+    ]
+}
