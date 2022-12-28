@@ -71,7 +71,6 @@ def generateRules(selectedRuleSet):
             cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_RGB2BGR)
             cv2_img = process_image(cv2_img)
 
-            cv2.imwrite("temp/" + message + ".png", cv2_img)
             rules.append(dict(
                 textToLookFor=message,
                 textImage=cv2_img,
@@ -87,56 +86,56 @@ def doAction(action):
     actionType = action["type"]
     actionData = action["data"]
 
-    if actionType = actionTypes[0]:
+    if actionType == actionTypes[0]:
         # keyboard_press
 
         pyautogui.press(actionData)
-    else if actionType = actionTypes[1]:
+    elif actionType == actionTypes[1]:
         # keyboard_key_down
 
         pyautogui.keyDown(actionData)
-    else if actionType = actionTypes[2]:
+    elif actionType == actionTypes[2]:
         # keyboard_key_up
 
         pyautogui.keyUp(actionData)
-    else if actionType = actionTypes[3]:
+    elif actionType == actionTypes[3]:
         # mouse_click
 
-        if actionData = "right":
+        if actionData == "right":
             pyautogui.click(button='right')
         else:
             pyautogui.click()
-    else if actionType = actionTypes[4]:
+    elif actionType == actionTypes[4]:
         # mouse_button_down
 
-        if actionData = "right":
+        if actionData == "right":
             pyautogui.mouseDown(button='right')
         else:
             pyautogui.mouseDown()
-    else if actionType = actionTypes[5]:
+    elif actionType == actionTypes[5]:
         # mouse_button_up
 
-        if actionData = "right":
+        if actionData == "right":
             pyautogui.mouseUp(button='right')
         else:
             pyautogui.mouseUp()
-    else if actionType = actionTypes[6]:
+    elif actionType == actionTypes[6]:
         # mouse_move_horizontal
 
         position = pyautogui.position()
         x = position(0) + actionData
         pyautogui.moveTo(x, position(1))
-    else if actionType = actionTypes[7]:
+    elif actionType == actionTypes[7]:
         # mouse_move_vertical
 
         position = pyautogui.position()
         y = position(1) + actionData
         pyautogui.moveTo(position(0), y)
-    else if actionType = actionTypes[8]:
+    elif actionType == actionTypes[8]:
         # scroll
 
         scroll(actionData)
-    else if actionType = actionTypes[9]:
+    elif actionType == actionTypes[9]:
         # wait
         time.sleep(actionData)
 
@@ -168,7 +167,6 @@ def run():
 
             if min_val < threshold:
                 print(seconds, "s : ", rule["textToLookFor"], " found!")
-                cv2.imwrite("temp/temp" + str(seconds) + ".png", textCap)
 
                 for action in rule["actions"]:
                     doAction(action)

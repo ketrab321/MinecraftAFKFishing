@@ -12,10 +12,6 @@
                     "data": 3
                 },
                 {
-                    "type": "scroll",
-                    "data": -1
-                },
-                {
                     "type": "mouse_click",
                     "data": "right"
                 }
