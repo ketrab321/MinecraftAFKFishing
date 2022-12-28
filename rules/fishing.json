@@ -9,20 +9,15 @@
                 },
                 {
                     "type": "wait",
-                    "data": 3
+                    "data": 1
                 },
                 {
                     "type": "mouse_click",
                     "data": "right"
-                }
-            ]
-        },
-        {
-            "textToLookFor": "Przedmiot zniszczony",
-            "actions": [
+                },
                 {
-                    "type": "scroll",
-                    "data": -1
+                    "type": "wait",
+                    "data": 2
                 }
             ]
         }

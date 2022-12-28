@@ -71,6 +71,7 @@ def generateRules(selectedRuleSet):
             cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_RGB2BGR)
             cv2_img = process_image(cv2_img)
 
+            # cv2.imwrite("temp/" + message + ".png", cv2_img)
             rules.append(dict(
                 textToLookFor=message,
                 textImage=cv2_img,
@@ -167,6 +168,7 @@ def run():
 
             if min_val < threshold:
                 print(seconds, "s : ", rule["textToLookFor"], " found!")
+                # cv2.imwrite("temp/temp" + str(seconds) + ".png", textCap)
 
                 for action in rule["actions"]:
                     doAction(action)
