@@ -1,0 +1,17 @@
+{
+    "rules": [
+        {
+            "textToLookFor": "",
+            "actions": [
+                {
+                    "type": "mouse_click",
+                    "data": "left"
+                },
+                {
+                    "type": "wait",
+                    "data": 1
+                }
+            ]
+        }
+    ]
+}

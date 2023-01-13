@@ -60,23 +60,30 @@ def generateRules(selectedRuleSet):
             message = rule['textToLookFor']
 
             message = message.replace(" ", "  ")
-            textWidth, textHeight = testImgDraw.textsize(message, font=font)
+            if message == "":
+                rules.append(dict(
+                    textToLookFor=message,
+                    textImage=None,
+                    actions=rule['actions']
+                ))
+            else:
+                textWidth, textHeight = testImgDraw.textsize(message, font=font)
 
-            img = Image.new('RGB', (textWidth + 2 * padding, textHeight + 2 * padding), color='black')
-            imgDraw = ImageDraw.Draw(img)
+                img = Image.new('RGB', (textWidth + 2 * padding, textHeight + 2 * padding), color='black')
+                imgDraw = ImageDraw.Draw(img)
 
-            imgDraw.text((padding, padding), message, font=font, fill=(255, 255, 255))
+                imgDraw.text((padding, padding), message, font=font, fill=(255, 255, 255))
 
-            cv2_img = np.array(img)
-            cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_RGB2BGR)
-            cv2_img = process_image(cv2_img)
+                cv2_img = np.array(img)
+                cv2_img = cv2.cvtColor(cv2_img, cv2.COLOR_RGB2BGR)
+                cv2_img = process_image(cv2_img)
 
-            # cv2.imwrite("temp/" + message + ".png", cv2_img)
-            rules.append(dict(
-                textToLookFor=message,
-                textImage=cv2_img,
-                actions=rule['actions']
-            ))
+                # cv2.imwrite("temp/" + message + ".png", cv2_img)
+                rules.append(dict(
+                    textToLookFor=message,
+                    textImage=cv2_img,
+                    actions=rule['actions']
+                ))
     return rules
         
 def process_image(img):
@@ -161,9 +168,12 @@ def run():
 
         for rule in rules:
             template = rule['textImage']
-            res = cv2.matchTemplate(textCap, template, cv2.TM_SQDIFF_NORMED)
-            min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-            
+            if hasattr(template, "__len__"):
+                res = cv2.matchTemplate(textCap, template, cv2.TM_SQDIFF_NORMED)
+                min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+            else:
+                min_val = .1
+
             threshold = .5
 
             if min_val < threshold:
